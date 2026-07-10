@@ -28,7 +28,9 @@ export async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI!);
+    cached.promise = mongoose.connect(MONGODB_URI!, {
+      family: 4,
+    });
   }
 
   cached.conn = await cached.promise;
