@@ -65,7 +65,7 @@ export default function ApplicationForm() {
     sessionStorage.setItem("formClosed", "true");
     if (window.location.hash === "#apply") {
       // Clear hash without scroll jump
-      history.pushState(
+      window.history.pushState(
         "",
         document.title,
         window.location.pathname + window.location.search
