@@ -1249,3 +1249,337 @@ body {
     font-size: 2.2rem;
   }
 }
+
+/* ── ADMIN DASHBOARD ── */
+.admin-page {
+  padding: 8rem 5vw 4rem;
+  min-height: 100vh;
+  background: var(--c-bg);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.admin-title span {
+  color: var(--c-accent);
+}
+
+.admin-sub {
+  color: var(--c-text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stats-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stats-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--c-accent);
+}
+
+.stats-card:nth-child(2)::before {
+  background: var(--c-accent2);
+}
+
+.stats-card:nth-child(3)::before {
+  background: #16a34a;
+}
+
+.stats-lbl {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.stats-val {
+  font-family: var(--ff-display);
+  font-size: 2.5rem;
+  color: var(--c-text);
+  margin-top: 0.25rem;
+  line-height: 1;
+}
+
+.stats-desc {
+  font-size: 0.8rem;
+  color: var(--c-text-secondary);
+  margin-top: 0.5rem;
+}
+
+.admin-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-search {
+  flex-grow: 1;
+  min-width: 250px;
+  background: var(--c-input-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  color: var(--c-text);
+  padding: 0.75rem 1rem;
+  outline: none;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.admin-search:focus,
+.admin-filter:focus {
+  border-color: var(--c-accent);
+}
+
+.admin-filter {
+  min-width: 180px;
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  color: var(--c-text);
+  padding: 0.75rem 1rem;
+  outline: none;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.admin-filter option {
+  background: var(--c-select-option);
+  color: var(--c-text);
+}
+
+.admin-table-wrap {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  overflow-x: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  background: rgba(255, 255, 255, 0.015);
+  border-bottom: 1px solid var(--c-border);
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.admin-table td {
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--c-border);
+  color: var(--c-text);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255, 60, 60, 0.02);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--c-border);
+  margin-right: 0.35rem;
+  margin-bottom: 0.25rem;
+  color: var(--c-text-secondary);
+}
+
+.badge.youtube {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.badge.instagram {
+  background: rgba(236, 72, 153, 0.08);
+  border-color: rgba(236, 72, 153, 0.2);
+  color: #f472b6;
+}
+
+.badge.twitch {
+  background: rgba(168, 85, 247, 0.08);
+  border-color: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+}
+
+.badge.niche {
+  background: rgba(255, 140, 0, 0.08);
+  border-color: rgba(255, 140, 0, 0.2);
+  color: #fb923c;
+}
+
+.admin-view-btn {
+  background: transparent;
+  color: var(--c-accent);
+  border: 1px solid rgba(255, 60, 60, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-view-btn:hover {
+  background: var(--c-accent);
+  color: #fff;
+  border-color: var(--c-accent);
+}
+
+/* ── DETAILS PANEL MODAL ── */
+.details-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(9, 9, 11, 0.88);
+  backdrop-filter: blur(16px);
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.details-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.details-modal-card {
+  background: var(--c-card);
+  border: 1px solid var(--c-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  transform: scale(0.92) translateY(24px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.details-modal-overlay.open .details-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.details-group {
+  margin-bottom: 0.5rem;
+}
+
+.details-group label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  display: block;
+}
+
+.details-group p,
+.details-group a {
+  font-size: 0.95rem;
+  color: var(--c-text);
+  margin-top: 0.15rem;
+}
+
+.details-group a {
+  color: var(--c-accent2);
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.details-group a:hover {
+  text-decoration: underline;
+}
+
+.details-full-width {
+  grid-column: span 2;
+}
+
+@media (max-width: 600px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  .details-full-width {
+    grid-column: span 1;
+  }
+  .details-modal-card {
+    padding: 2rem 1.25rem;
+  }
+}

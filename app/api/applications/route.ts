@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/lib/mongodb";
-import { Application } from "@/models/Application";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, getDocs, query, orderBy } from "firebase/firestore";
 
 export async function POST(request: Request) {
   try {
@@ -22,14 +22,20 @@ export async function POST(request: Request) {
       );
     }
 
-    await connectDB();
+    // Prepare payload with timestamp metadata
+    const payload = {
+      ...body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
 
-    const application = await Application.create(body);
+    // Save document to Firestore
+    const docRef = await addDoc(collection(db, "applications"), payload);
 
     return NextResponse.json(
       {
         message: "Application submitted successfully.",
-        id: application._id,
+        id: docRef.id,
       },
       { status: 201 }
     );
@@ -37,6 +43,27 @@ export async function POST(request: Request) {
     console.error("Failed to save application:", error);
     return NextResponse.json(
       { message: "Failed to submit application. Please try again." },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET() {
+  try {
+    const applicationsRef = collection(db, "applications");
+    const q = query(applicationsRef, orderBy("createdAt", "desc"));
+    const querySnapshot = await getDocs(q);
+
+    const applications = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return NextResponse.json(applications, { status: 200 });
+  } catch (error) {
+    console.error("Failed to fetch applications:", error);
+    return NextResponse.json(
+      { message: "Failed to load applications." },
       { status: 500 }
     );
   }
